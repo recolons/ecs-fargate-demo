@@ -67,7 +67,7 @@ pipeline {
 
                     writeJSON file: 'new-task-def.json', json: newTaskDef
 
-                    sh "aws ecs register-task-definition --cli-input-json file://new-task-def.json"
+                    sh "aws ecs register-task-definition --region us-east-1 --cli-input-json file://new-task-def.json"
                 }
             }
         }
