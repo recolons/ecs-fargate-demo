@@ -56,7 +56,7 @@ pipeline {
                     def taskDef = readJSON text: taskDefJson
 
                     // Modify the container image
-                    taskDef.taskDefinition.containerDefinitions[0].image = "${accountId}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO}:${IMAGE_TAG}"
+                    taskDef.taskDefinition.containerDefinitions[0].image = imageUri
 
                     // Remove unnecessary fields before registering
                     def newTaskDef = taskDef.taskDefinition
