@@ -49,6 +49,9 @@ pipeline {
         stage('Register New Task Definition') {
             steps {
                 script {
+                    def accountId = sh(script: "aws sts get-caller-identity --query Account --output text", returnStdout: true).trim()
+                    def imageUri = "${accountId}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO}:${IMAGE_TAG}"
+
                     def taskDefJson = sh(script: "aws ecs describe-task-definition --region us-east-1 --task-definition ${TASK_FAMILY}", returnStdout: true).trim()
                     def taskDef = readJSON text: taskDefJson
 
