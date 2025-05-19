@@ -49,7 +49,7 @@ pipeline {
         stage('Register New Task Definition') {
             steps {
                 script {
-                    def taskDefJson = sh(script: "aws ecs describe-task-definition --task-definition ${TASK_FAMILY}", returnStdout: true).trim()
+                    def taskDefJson = sh(script: "aws ecs describe-task-definition --region us-east-1 --task-definition ${TASK_FAMILY}", returnStdout: true).trim()
                     def taskDef = readJSON text: taskDefJson
 
                     // Modify the container image
