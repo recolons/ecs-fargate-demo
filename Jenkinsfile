@@ -56,7 +56,7 @@ pipeline {
                     def taskDef = readJSON text: taskDefJson
 
                     // Modify the container image
-                    taskDef.taskDefinition.containerDefinitions[0].image = imageUri
+                    taskDef.taskDefinition.containerDefinitions[0].image = imageUriParameter name must be a fully qualified name.
 
                     // Remove unnecessary fields before registering
                     def newTaskDef = taskDef.taskDefinition
