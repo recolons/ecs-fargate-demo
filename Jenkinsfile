@@ -27,6 +27,7 @@ pipeline {
             }
         }
 
+        // Build Java and skip tests
         stage('Build Java') {
             steps {
                 sh 'mvn clean package -DskipTests'
@@ -56,36 +57,6 @@ pipeline {
 
                     // Modify the container image
                     taskDef.taskDefinition.containerDefinitions[0].image = imageUri
-
-                    // Preserve existing secrets configuration
-                    def secrets = [
-                        [
-                            name: "SPRING_PROFILES_ACTIVE",
-                            valueFrom: "arn:aws:ssm:us-east-1:852876132569:parameter/ecs-demo/spring-profiles-active"
-                        ],
-                        [
-                            name: "DB_NAME",
-                            valueFrom: "arn:aws:ssm:us-east-1:852876132569:parameter/ecs-demo/db-name"
-                        ],
-                        [
-                            name: "DB_PORT",
-                            valueFrom: "arn:aws:ssm:us-east-1:852876132569:parameter/ecs-demo/db-port"
-                        ],
-                        [
-                            name: "DB_PASSWORD",
-                            valueFrom: "arn:aws:ssm:us-east-1:852876132569:parameter/ecs-demo/db-password"
-                        ],
-                        [
-                            name: "DB_USER",
-                            valueFrom: "arn:aws:ssm:us-east-1:852876132569:parameter/ecs-demo/db-username"
-                        ],
-                        [
-                            name: "DB_HOST",
-                            valueFrom: "arn:aws:ssm:us-east-1:852876132569:parameter/ecs-demo/rds-endpoint"
-                        ]
-                    ]
-                    
-                    taskDef.taskDefinition.containerDefinitions[0].secrets = secrets
 
                     // Remove unnecessary fields before registering
                     def newTaskDef = taskDef.taskDefinition
