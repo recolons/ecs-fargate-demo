@@ -52,11 +52,11 @@ pipeline {
                     // Build the image
                     sh "docker build -t ${imageUri} ."
                     
-                    // Verify the JAR in the image
+                    // Verify the JAR in the image without starting the application
                     sh """
                         echo "Verifying JAR in Docker image:"
-                        docker run --rm ${imageUri} ls -l /app/app.jar
-                        docker run --rm ${imageUri} sh -c 'echo "JAR timestamp in container: \$(stat -c %y /app/app.jar)"'
+                        docker run --rm --entrypoint ls ${imageUri} -l /app/app.jar
+                        docker run --rm --entrypoint stat ${imageUri} -c %y /app/app.jar
                     """
                     
                     // Push the image
