@@ -31,8 +31,12 @@ pipeline {
         stage('Build Java') {
             steps {
                 sh 'mvn clean package -DskipTests'
-                // Verify the JAR file was created
-                sh 'ls -l target/*.jar'
+                // Verify the JAR file was created and get its timestamp
+                sh '''
+                    echo "JAR file details:"
+                    ls -l target/*.jar
+                    echo "JAR file timestamp: $(stat -c %y target/ecs-fargate-demo-0.0.1-SNAPSHOT.jar)"
+                '''
             }
         }
 
@@ -45,7 +49,17 @@ pipeline {
                     // Verify the JAR file exists before building
                     sh 'test -f target/ecs-fargate-demo-0.0.1-SNAPSHOT.jar'
                     
+                    // Build the image
                     sh "docker build -t ${imageUri} ."
+                    
+                    // Verify the JAR in the image
+                    sh """
+                        echo "Verifying JAR in Docker image:"
+                        docker run --rm ${imageUri} ls -l /app/app.jar
+                        docker run --rm ${imageUri} sh -c 'echo "JAR timestamp in container: \$(stat -c %y /app/app.jar)"'
+                    """
+                    
+                    // Push the image
                     sh "docker push ${imageUri}"
                 }
             }
