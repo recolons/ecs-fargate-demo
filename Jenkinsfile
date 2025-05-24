@@ -31,6 +31,8 @@ pipeline {
         stage('Build Java') {
             steps {
                 sh 'mvn clean package -DskipTests'
+                // Verify the JAR file was created
+                sh 'ls -l target/*.jar'
             }
         }
 
@@ -40,6 +42,9 @@ pipeline {
                     def accountId = sh(script: "aws sts get-caller-identity --query Account --output text", returnStdout: true).trim()
                     def imageUri = "${accountId}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO}:${IMAGE_TAG}"
 
+                    // Verify the JAR file exists before building
+                    sh 'test -f target/ecs-fargate-demo-0.0.1-SNAPSHOT.jar'
+                    
                     sh "docker build -t ${imageUri} ."
                     sh "docker push ${imageUri}"
                 }
