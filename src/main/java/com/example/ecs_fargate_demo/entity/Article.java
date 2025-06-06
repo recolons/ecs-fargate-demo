@@ -22,6 +22,10 @@ public class Article {
 
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "section_id")
+    private Section section;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 }
