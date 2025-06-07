@@ -34,6 +34,16 @@ public class SectionController {
         }
     }
 
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Section> getSectionByName(@PathVariable String name) {
+        try {
+            Section section = sectionService.getSectionByName(name);
+            return ResponseEntity.ok(section);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Section> createSection(@RequestBody Section section) {
         Section createdSection = sectionService.createSection(section);

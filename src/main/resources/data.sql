@@ -1,6 +1,6 @@
 -- Insert sections
-INSERT INTO sections (name) VALUES ('Deportes');
-INSERT INTO sections (name) VALUES ('Noticias');
+INSERT INTO sections (name) VALUES ('deportes');
+INSERT INTO sections (name) VALUES ('noticias');
 
 -- Insert articles for Deportes section
 INSERT INTO articles (title, content, date, section_id) VALUES

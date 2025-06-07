@@ -28,6 +28,11 @@ public class SectionService {
                 .orElseThrow(() -> new SectionNotFoundException(id));
     }
 
+    public Section getSectionByName(String name) {
+        return sectionRepository.findByName(name)
+                .orElseThrow(() -> new SectionNotFoundException("Section not found with name: " + name));
+    }
+
     public Section createSection(Section section) {
         return sectionRepository.save(section);
     }
