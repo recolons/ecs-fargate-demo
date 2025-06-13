@@ -1,6 +1,16 @@
 -- Insert sections
-INSERT INTO sections (name) VALUES ('deportes');
-INSERT INTO sections (name) VALUES ('noticias');
+INSERT INTO sections (name) VALUES ('Deportes');
+INSERT INTO sections (name) VALUES ('Noticias');
+INSERT INTO sections (name) VALUES ('Tecnología');
+INSERT INTO sections (name) VALUES ('Entretenimiento');
+INSERT INTO sections (name) VALUES ('Horóscopo');
+INSERT INTO sections (name) VALUES ('Política');
+INSERT INTO sections (name) VALUES ('Salud');
+INSERT INTO sections (name) VALUES ('Ciencia');
+INSERT INTO sections (name) VALUES ('Cultura');
+INSERT INTO sections (name) VALUES ('Economía');
+INSERT INTO sections (name) VALUES ('Finanzas');
+INSERT INTO sections (name) VALUES ('Educación');
 
 -- Insert articles for Deportes section
 INSERT INTO articles (title, content, date, section_id) VALUES
@@ -56,4 +66,84 @@ INSERT INTO articles (title, content, date, section_id) VALUES
 ('Avance en telecomunicaciones', 'Nueva tecnología 6G promete mayor velocidad...', CURRENT_TIMESTAMP, 2),
 ('Crisis de seguridad cibernética', 'Aumentan los ataques cibernéticos globales...', CURRENT_TIMESTAMP, 2),
 ('Nuevo acuerdo comercial', 'Países firman importante acuerdo comercial...', CURRENT_TIMESTAMP, 2),
-('Avance en agricultura sostenible', 'Nueva técnica agrícola promete mayor rendimiento...', CURRENT_TIMESTAMP, 2); 
+('Avance en agricultura sostenible', 'Nueva técnica agrícola promete mayor rendimiento...', CURRENT_TIMESTAMP, 2);
+
+-- Insert articles for Tecnología section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Nuevo avance en inteligencia artificial', 'OpenAI presenta su último modelo de lenguaje que supera todas las expectativas...', CURRENT_TIMESTAMP, 3),
+('Apple anuncia su nuevo iPhone', 'La compañía de Cupertino revela las características del próximo iPhone...', CURRENT_TIMESTAMP, 3),
+('Revolución en la computación cuántica', 'IBM logra un nuevo hito en la computación cuántica...', CURRENT_TIMESTAMP, 3),
+('El futuro de la realidad virtual', 'Meta presenta sus nuevos avances en tecnología VR...', CURRENT_TIMESTAMP, 3),
+('Ciberseguridad: nuevas amenazas', 'Expertos advierten sobre el aumento de ataques cibernéticos...', CURRENT_TIMESTAMP, 3);
+
+-- Insert articles for Entretenimiento section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Nueva temporada de Stranger Things', 'Netflix anuncia la fecha de estreno de la última temporada...', CURRENT_TIMESTAMP, 4),
+('Festival de Cannes 2024', 'Las películas más esperadas del festival de cine...', CURRENT_TIMESTAMP, 4),
+('Concierto histórico en el Madison Square Garden', 'Artista rompe récord de asistencia en el legendario recinto...', CURRENT_TIMESTAMP, 4),
+('Nueva serie de HBO', 'La plataforma presenta su próxima producción estrella...', CURRENT_TIMESTAMP, 4),
+('Premios Grammy 2024', 'Lista completa de nominados y ganadores...', CURRENT_TIMESTAMP, 4);
+
+-- Insert articles for Horóscopo section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Predicciones astrológicas para 2024', 'Los astros revelan lo que depara el año para cada signo...', CURRENT_TIMESTAMP, 5),
+('Luna llena en Escorpio', 'Cómo aprovechar la energía de esta poderosa luna...', CURRENT_TIMESTAMP, 5),
+('Compatibilidad amorosa de la semana', 'Descubre tu compatibilidad con otros signos...', CURRENT_TIMESTAMP, 5),
+('Mercurio retrógrado: guía de supervivencia', 'Consejos para navegar este período astrológico...', CURRENT_TIMESTAMP, 5),
+('Rituales de luna nueva', 'Actividades para aprovechar la energía de la luna nueva...', CURRENT_TIMESTAMP, 5);
+
+-- Insert articles for Política section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Nueva ley de reforma fiscal', 'El congreso debate los cambios propuestos al sistema fiscal...', CURRENT_TIMESTAMP, 6),
+('Cumbre internacional sobre cambio climático', 'Líderes mundiales se reúnen para discutir medidas ambientales...', CURRENT_TIMESTAMP, 6),
+('Elecciones presidenciales 2024', 'Análisis de las principales propuestas de los candidatos...', CURRENT_TIMESTAMP, 6),
+('Reforma migratoria', 'Nuevas políticas sobre inmigración en debate...', CURRENT_TIMESTAMP, 6),
+('Acuerdo comercial internacional', 'Países firman nuevo tratado de libre comercio...', CURRENT_TIMESTAMP, 6);
+
+-- Insert articles for Salud section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Nuevo avance en tratamiento del cáncer', 'Investigadores presentan resultados prometedores...', CURRENT_TIMESTAMP, 7),
+('Guía de alimentación saludable', 'Expertos en nutrición comparten sus recomendaciones...', CURRENT_TIMESTAMP, 7),
+('Beneficios del ejercicio diario', 'Estudio revela impacto positivo en la salud mental...', CURRENT_TIMESTAMP, 7),
+('Nueva vacuna contra la gripe', 'Autoridades sanitarias aprueban nueva formulación...', CURRENT_TIMESTAMP, 7),
+('Meditación y bienestar', 'Cómo la práctica diaria mejora la calidad de vida...', CURRENT_TIMESTAMP, 7);
+
+-- Insert articles for Ciencia section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Descubrimiento de nueva especie marina', 'Científicos encuentran criatura en las profundidades...', CURRENT_TIMESTAMP, 8),
+('Avance en fusión nuclear', 'Laboratorio logra nuevo récord de energía sostenida...', CURRENT_TIMESTAMP, 8),
+('Misión espacial a Marte', 'NASA anuncia nuevos hallazgos en el planeta rojo...', CURRENT_TIMESTAMP, 8),
+('Estudio sobre el cambio climático', 'Nuevos datos revelan aceleración del calentamiento global...', CURRENT_TIMESTAMP, 8),
+('Investigación en genética', 'Científicos logran nuevo avance en edición genética...', CURRENT_TIMESTAMP, 8);
+
+-- Insert articles for Cultura section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Exposición de arte contemporáneo', 'Museo presenta muestra de artistas emergentes...', CURRENT_TIMESTAMP, 9),
+('Festival de literatura', 'Escritores internacionales se reúnen para celebrar la palabra...', CURRENT_TIMESTAMP, 9),
+('Patrimonio cultural en peligro', 'UNESCO alerta sobre sitios históricos amenazados...', CURRENT_TIMESTAMP, 9),
+('Nueva tendencia en arquitectura', 'Diseñadores presentan conceptos innovadores...', CURRENT_TIMESTAMP, 9),
+('Revival de la música clásica', 'Orquestas jóvenes reviven composiciones olvidadas...', CURRENT_TIMESTAMP, 9);
+
+-- Insert articles for Economía section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Perspectivas económicas 2024', 'Analistas predicen tendencias para el próximo año...', CURRENT_TIMESTAMP, 10),
+('Mercado laboral en transformación', 'Nuevas profesiones emergen con la tecnología...', CURRENT_TIMESTAMP, 10),
+('Comercio internacional', 'Análisis de las relaciones comerciales globales...', CURRENT_TIMESTAMP, 10),
+('Desarrollo sostenible', 'Empresas adoptan modelos económicos verdes...', CURRENT_TIMESTAMP, 10),
+('Innovación en modelos de negocio', 'Startups revolucionan industrias tradicionales...', CURRENT_TIMESTAMP, 10);
+
+-- Insert articles for Finanzas section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Guía de inversión para principiantes', 'Expertos comparten estrategias básicas...', CURRENT_TIMESTAMP, 11),
+('Mercado de criptomonedas', 'Análisis de las últimas tendencias en blockchain...', CURRENT_TIMESTAMP, 11),
+('Planificación financiera personal', 'Consejos para alcanzar la independencia financiera...', CURRENT_TIMESTAMP, 11),
+('Fondos de inversión 2024', 'Ranking de los mejores fondos del mercado...', CURRENT_TIMESTAMP, 11),
+('Tecnología financiera', 'Fintech revoluciona los servicios bancarios...', CURRENT_TIMESTAMP, 11);
+
+-- Insert articles for Educación section
+INSERT INTO articles (title, content, date, section_id) VALUES
+('Revolución en la educación online', 'Plataformas digitales transforman el aprendizaje...', CURRENT_TIMESTAMP, 12),
+('Nuevas metodologías educativas', 'Escuelas adoptan enfoques innovadores...', CURRENT_TIMESTAMP, 12),
+('Educación STEM', 'Importancia de la ciencia y tecnología en las aulas...', CURRENT_TIMESTAMP, 12),
+('Becas internacionales 2024', 'Oportunidades de estudio en el extranjero...', CURRENT_TIMESTAMP, 12),
+('Futuro de las universidades', 'Cómo la IA está cambiando la educación superior...', CURRENT_TIMESTAMP, 12); 
