@@ -74,7 +74,8 @@ INSERT INTO articles (title, content, date, section_id) VALUES
 ('Apple anuncia su nuevo iPhone', 'La compañía de Cupertino revela las características del próximo iPhone...', CURRENT_TIMESTAMP, 3),
 ('Revolución en la computación cuántica', 'IBM logra un nuevo hito en la computación cuántica...', CURRENT_TIMESTAMP, 3),
 ('El futuro de la realidad virtual', 'Meta presenta sus nuevos avances en tecnología VR...', CURRENT_TIMESTAMP, 3),
-('Ciberseguridad: nuevas amenazas', 'Expertos advierten sobre el aumento de ataques cibernéticos...', CURRENT_TIMESTAMP, 3);
+('Ciberseguridad: nuevas amenazas', 'Expertos advierten sobre el aumento de ataques cibernéticos...', CURRENT_TIMESTAMP, 3),
+('They Asked an A.I. Chatbot Questions. The Answers Sent Them Spiraling.', 'In a groundbreaking study, researchers conducted extensive interviews with an advanced AI chatbot, revealing unexpected psychological impacts on participants. The AI''s responses, while technically accurate, triggered existential questions and emotional distress in many subjects. Some reported feeling overwhelmed by the AI''s ability to articulate complex philosophical concepts, while others experienced anxiety about the future of human-AI relationships. The study highlights the need for better understanding of AI''s psychological impact on users and suggests implementing safeguards to prevent potential mental health concerns. Researchers emphasize the importance of developing ethical guidelines for AI interactions, particularly as these technologies become more sophisticated and widely accessible.' , CURRENT_TIMESTAMP, 3);
 
 -- Insert articles for Entretenimiento section
 INSERT INTO articles (title, content, date, section_id) VALUES
