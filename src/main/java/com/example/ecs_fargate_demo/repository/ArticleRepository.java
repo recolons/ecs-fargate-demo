@@ -12,11 +12,16 @@ import java.util.List;
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, String> {
     // Basic CRUD operations are automatically implemented by Spring Data JPA
+
+    // get articles by section
     List<Article> findBySection(Section section);
+
+    // get articles by section with pagination
     Page<Article> findBySection(Section section, Pageable pageable);
     
-    // Add sorting options
-    List<Article> findBySectionOrderByDateDesc(Section section);
+    // get articles by section with newest first
+    List<Article> findBySectionOrderByDatePublishedDesc(Section section);
+
     List<Article> findBySectionOrderByTitleAsc(Section section);
-    List<Article> findBySectionOrderByDateAsc(Section section);
+    List<Article> findBySectionOrderByDatePublishedAsc(Section section);
 } 

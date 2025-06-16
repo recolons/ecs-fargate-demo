@@ -67,11 +67,13 @@ public class ArticleService {
                 .orElseThrow(() -> new SectionNotFoundException(sectionId));
     }
 
+    // get articles by section
     public List<Article> getArticlesBySection(Section section) {
         validateSection(section.getId());
         return articleRepository.findBySection(section);
     }
 
+    // get articles by section with pagination and sorting
     public Page<Article> getArticlesBySection(Section section, int page, int size, String sortBy, String direction) {
         validateSection(section.getId());
         Sort.Direction sortDirection = Sort.Direction.fromString(direction.toUpperCase());
@@ -80,16 +82,19 @@ public class ArticleService {
     }
 
     // Convenience methods for common sorting scenarios
+    // articles by section newest first
     public List<Article> getArticlesBySectionNewestFirst(Section section) {
         validateSection(section.getId());
-        return articleRepository.findBySectionOrderByDateDesc(section);
+        return articleRepository.findBySectionOrderByDatePublishedDesc(section);
     }
 
+    // articles by section oldest first
     public List<Article> getArticlesBySectionOldestFirst(Section section) {
         validateSection(section.getId());
-        return articleRepository.findBySectionOrderByDateAsc(section);
+        return articleRepository.findBySectionOrderByDatePublishedAsc(section);
     }
 
+    // articles by section alphabetically
     public List<Article> getArticlesBySectionAlphabetically(Section section) {
         validateSection(section.getId());
         return articleRepository.findBySectionOrderByTitleAsc(section);

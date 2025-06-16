@@ -78,7 +78,7 @@ public class ArticleController {
             @PathVariable Long sectionId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "date") String sortBy,
+            @RequestParam(defaultValue = "datePublished") String sortBy,
             @RequestParam(defaultValue = "desc") String direction) {
         Section section = new Section();
         section.setId(sectionId);
