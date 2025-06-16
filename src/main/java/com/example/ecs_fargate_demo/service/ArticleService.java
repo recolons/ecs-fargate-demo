@@ -31,7 +31,7 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
-    public Optional<Article> getArticleById(Long id) {
+    public Optional<Article> getArticleById(String id) {
         return articleRepository.findById(id);
     }
 
@@ -39,18 +39,24 @@ public class ArticleService {
         return articleRepository.save(article);
     }
 
-    public Article updateArticle(Long id, Article articleDetails) {
+    public Article updateArticle(String id, Article articleDetails) {
         Article article = articleRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Article not found with id: " + id));
         
         article.setTitle(articleDetails.getTitle());
         article.setContent(articleDetails.getContent());
-        article.setDate(articleDetails.getDate());
+        article.setDatePublished(articleDetails.getDatePublished());
+        article.setDateUpdated(articleDetails.getDateUpdated());
+        article.setAuthor(articleDetails.getAuthor());
+        article.setImageUrl1(articleDetails.getImageUrl1());
+        article.setImageUrl2(articleDetails.getImageUrl2());
+        article.setImageUrl3(articleDetails.getImageUrl3());
+        article.setDescription(articleDetails.getDescription());
         
         return articleRepository.save(article);
     }
 
-    public void deleteArticle(Long id) {
+    public void deleteArticle(String id) {
         Article article = articleRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Article not found with id: " + id));
         articleRepository.delete(article);

@@ -4,8 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UuidGenerator;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "articles")
@@ -15,10 +16,20 @@ import java.util.Date;
 public class Article {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @UuidGenerator
+    private String id;
 
     private String title;
+
+    private String author;
+
+    private String description;
+
+    private String imageUrl1;
+
+    private String imageUrl2;
+
+    private String imageUrl3;
 
     private String content;
 
@@ -26,6 +37,19 @@ public class Article {
     @JoinColumn(name = "section_id")
     private Section section;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    @Column(name = "date_published", nullable = false, updatable = false)
+    private LocalDateTime datePublished;
+
+    @Column(name = "date_updated")
+    private LocalDateTime dateUpdated;
+
+    @PrePersist
+    protected void onCreate() {
+        datePublished = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        dateUpdated = LocalDateTime.now();
+    }
 }

@@ -21,25 +21,29 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
+    // get all articles
     @GetMapping
     public List<Article> getAllArticles() {
         return articleService.getAllArticles();
     }
 
+    // get article by id
     @GetMapping("/{id}")
-    public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
+    public ResponseEntity<Article> getArticleById(@PathVariable String id) {
         return articleService.getArticleById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // create article
     @PostMapping
     public Article createArticle(@RequestBody Article article) {
         return articleService.createArticle(article);
     }
 
+    // update article
     @PutMapping("/{id}")
-    public ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody Article articleDetails) {
+    public ResponseEntity<Article> updateArticle(@PathVariable String id, @RequestBody Article articleDetails) {
         try {
             Article updatedArticle = articleService.updateArticle(id, articleDetails);
             return ResponseEntity.ok(updatedArticle);
@@ -48,8 +52,9 @@ public class ArticleController {
         }
     }
 
+    // delete article
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteArticle(@PathVariable String id) {
         try {
             articleService.deleteArticle(id);
             return ResponseEntity.ok().build();
@@ -58,6 +63,7 @@ public class ArticleController {
         }
     }
 
+    // get all articles by section
     @GetMapping("/section/{sectionId}")
     public ResponseEntity<List<Article>> getArticlesBySection(@PathVariable Long sectionId) {
         Section section = new Section();
@@ -66,6 +72,7 @@ public class ArticleController {
         return ResponseEntity.ok(articles);
     }
 
+    // get all articles by section with pagination
     @GetMapping("/section/{sectionId}/page")
     public ResponseEntity<Page<Article>> getArticlesBySection(
             @PathVariable Long sectionId,
@@ -79,7 +86,8 @@ public class ArticleController {
         return ResponseEntity.ok(articles);
     }
 
-    // Convenience endpoints for common sorting scenarios
+    // Convenience endpoints for common sorting scenarios: 
+    // newest first
     @GetMapping("/section/{sectionId}/newest")
     public ResponseEntity<List<Article>> getArticlesBySectionNewestFirst(@PathVariable Long sectionId) {
         Section section = new Section();
@@ -88,6 +96,7 @@ public class ArticleController {
         return ResponseEntity.ok(articles);
     }
 
+    // oldest first
     @GetMapping("/section/{sectionId}/oldest")
     public ResponseEntity<List<Article>> getArticlesBySectionOldestFirst(@PathVariable Long sectionId) {
         Section section = new Section();
@@ -96,6 +105,7 @@ public class ArticleController {
         return ResponseEntity.ok(articles);
     }
 
+    // alphabetical
     @GetMapping("/section/{sectionId}/alphabetical")
     public ResponseEntity<List<Article>> getArticlesBySectionAlphabetically(@PathVariable Long sectionId) {
         Section section = new Section();

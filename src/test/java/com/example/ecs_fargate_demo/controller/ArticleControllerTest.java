@@ -10,8 +10,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Arrays;
@@ -31,6 +29,8 @@ class ArticleControllerTest {
 
     private Article testArticle;
     private Section testSection;
+    private static final String TEST_ARTICLE_ID = "123e4567-e89b-12d3-a456-426614174000";
+    private static final String NON_EXISTENT_ARTICLE_ID = "999e4567-e89b-12d3-a456-426614174000";
 
     @BeforeEach
     void setUp() {
@@ -40,7 +40,7 @@ class ArticleControllerTest {
         testSection.setName("Test Section");
 
         testArticle = new Article();
-        testArticle.setId(1L);
+        testArticle.setId(TEST_ARTICLE_ID);
         testArticle.setTitle("Test Article");
         testArticle.setSection(testSection);
     }
@@ -64,28 +64,28 @@ class ArticleControllerTest {
     @Test
     void getArticleById_WhenArticleExists_ShouldReturnArticle() {
         // Arrange
-        when(articleService.getArticleById(1L)).thenReturn(Optional.of(testArticle));
+        when(articleService.getArticleById(TEST_ARTICLE_ID)).thenReturn(Optional.of(testArticle));
 
         // Act
-        ResponseEntity<Article> response = articleController.getArticleById(1L);
+        ResponseEntity<Article> response = articleController.getArticleById(TEST_ARTICLE_ID);
 
         // Assert
         assertTrue(response.getStatusCode().is2xxSuccessful());
         assertEquals(testArticle, response.getBody());
-        verify(articleService, times(1)).getArticleById(1L);
+        verify(articleService, times(1)).getArticleById(TEST_ARTICLE_ID);
     }
 
     @Test
     void getArticleById_WhenArticleDoesNotExist_ShouldReturnNotFound() {
         // Arrange
-        when(articleService.getArticleById(999L)).thenReturn(Optional.empty());
+        when(articleService.getArticleById(NON_EXISTENT_ARTICLE_ID)).thenReturn(Optional.empty());
 
         // Act
-        ResponseEntity<Article> response = articleController.getArticleById(999L);
+        ResponseEntity<Article> response = articleController.getArticleById(NON_EXISTENT_ARTICLE_ID);
 
         // Assert
         assertTrue(response.getStatusCode().is4xxClientError());
-        verify(articleService, times(1)).getArticleById(999L);
+        verify(articleService, times(1)).getArticleById(NON_EXISTENT_ARTICLE_ID);
     }
 
     @Test
@@ -105,28 +105,28 @@ class ArticleControllerTest {
     @Test
     void updateArticle_WhenArticleExists_ShouldReturnUpdatedArticle() {
         // Arrange
-        when(articleService.updateArticle(eq(1L), any(Article.class))).thenReturn(testArticle);
+        when(articleService.updateArticle(eq(TEST_ARTICLE_ID), any(Article.class))).thenReturn(testArticle);
 
         // Act
-        ResponseEntity<Article> response = articleController.updateArticle(1L, testArticle);
+        ResponseEntity<Article> response = articleController.updateArticle(TEST_ARTICLE_ID, testArticle);
 
         // Assert
         assertTrue(response.getStatusCode().is2xxSuccessful());
         assertEquals(testArticle, response.getBody());
-        verify(articleService, times(1)).updateArticle(1L, testArticle);
+        verify(articleService, times(1)).updateArticle(TEST_ARTICLE_ID, testArticle);
     }
 
     @Test
     void deleteArticle_WhenArticleExists_ShouldReturnOk() {
         // Arrange
-        doNothing().when(articleService).deleteArticle(1L);
+        doNothing().when(articleService).deleteArticle(TEST_ARTICLE_ID);
 
         // Act
-        ResponseEntity<Void> response = articleController.deleteArticle(1L);
+        ResponseEntity<Void> response = articleController.deleteArticle(TEST_ARTICLE_ID);
 
         // Assert
         assertTrue(response.getStatusCode().is2xxSuccessful());
-        verify(articleService, times(1)).deleteArticle(1L);
+        verify(articleService, times(1)).deleteArticle(TEST_ARTICLE_ID);
     }
 
     @Test
