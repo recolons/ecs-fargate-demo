@@ -1,3 +1,15 @@
+-- Insert roles
+INSERT INTO roles (name) VALUES ('USER');
+INSERT INTO roles (name) VALUES ('EDITOR');
+INSERT INTO roles (name) VALUES ('ADMIN');
+
+-- Insert default editor user (password: editor123)
+INSERT INTO users (username, password, email, first_name, last_name) VALUES 
+('editor', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'editor@example.com', 'Default', 'Editor');
+
+-- Assign EDITOR role to the default editor user
+INSERT INTO user_roles (user_id, role_id) VALUES (1, 2);
+
 -- Insert sections
 INSERT INTO sections (name) VALUES ('Deportes');
 INSERT INTO sections (name) VALUES ('Noticias');

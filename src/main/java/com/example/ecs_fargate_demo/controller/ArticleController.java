@@ -6,12 +6,14 @@ import com.example.ecs_fargate_demo.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/articles")
+@CrossOrigin(origins = "*")
 public class ArticleController {
 
     private final ArticleService articleService;
@@ -21,13 +23,13 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    // get all articles
+    // get all articles - PUBLIC
     @GetMapping
     public List<Article> getAllArticles() {
         return articleService.getAllArticles();
     }
 
-    // get article by id
+    // get article by id - PUBLIC
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable String id) {
         return articleService.getArticleById(id)
@@ -35,14 +37,16 @@ public class ArticleController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // create article
+    // create article - EDITOR ONLY
     @PostMapping
+    @PreAuthorize("hasRole('EDITOR') or hasRole('ADMIN')")
     public Article createArticle(@RequestBody Article article) {
         return articleService.createArticle(article);
     }
 
-    // update article
+    // update article - EDITOR ONLY
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('EDITOR') or hasRole('ADMIN')")
     public ResponseEntity<Article> updateArticle(@PathVariable String id, @RequestBody Article articleDetails) {
         try {
             Article updatedArticle = articleService.updateArticle(id, articleDetails);
@@ -52,8 +56,9 @@ public class ArticleController {
         }
     }
 
-    // delete article
+    // delete article - EDITOR ONLY
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('EDITOR') or hasRole('ADMIN')")
     public ResponseEntity<Void> deleteArticle(@PathVariable String id) {
         try {
             articleService.deleteArticle(id);
@@ -63,7 +68,7 @@ public class ArticleController {
         }
     }
 
-    // get all articles by section
+    // get all articles by section - PUBLIC
     @GetMapping("/section/{sectionId}")
     public ResponseEntity<List<Article>> getArticlesBySection(@PathVariable Long sectionId) {
         Section section = new Section();
@@ -72,7 +77,7 @@ public class ArticleController {
         return ResponseEntity.ok(articles);
     }
 
-    // get all articles by section with pagination
+    // get all articles by section with pagination - PUBLIC
     @GetMapping("/section/{sectionId}/page")
     public ResponseEntity<Page<Article>> getArticlesBySection(
             @PathVariable Long sectionId,
@@ -86,7 +91,7 @@ public class ArticleController {
         return ResponseEntity.ok(articles);
     }
 
-    // Convenience endpoints for common sorting scenarios: 
+    // Convenience endpoints for common sorting scenarios - PUBLIC
     // newest first
     @GetMapping("/section/{sectionId}/newest")
     public ResponseEntity<List<Article>> getArticlesBySectionNewestFirst(@PathVariable Long sectionId) {
