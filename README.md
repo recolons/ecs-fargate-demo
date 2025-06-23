@@ -2,6 +2,10 @@
 
 This Spring Boot application provides a news article management system with role-based authentication for editors.
 
+## Front-end source code
+
+- https://github.com/recolons/ecs-fargate-demo-frontend
+
 ## Features
 
 - **Public Access**: Anyone can read articles and browse sections

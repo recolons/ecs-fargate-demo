@@ -5,7 +5,7 @@ INSERT INTO roles (name) VALUES ('ADMIN');
 
 -- Insert default editor user (password: editor123)
 INSERT INTO users (username, password, email, first_name, last_name) VALUES 
-('editor', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'editor@example.com', 'Default', 'Editor');
+('editor', '$2a$10$dwn2jgXCxExDH699Qnhh0udkPbgdeY.KB/1vufoWAV.v3HApR094O', 'editor@example.com', 'Default', 'Editor');
 
 -- Assign EDITOR role to the default editor user
 INSERT INTO user_roles (user_id, role_id) VALUES (1, 2);

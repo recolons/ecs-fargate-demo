@@ -27,10 +27,10 @@ pipeline {
             }
         }
 
-        // Build Java and skip tests
+        // Build Java
         stage('Build Java') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn clean package'
                 // Verify the JAR file was created and get its timestamp
                 sh '''
                     echo "JAR file details:"
