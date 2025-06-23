@@ -97,7 +97,12 @@ pipeline {
         stage('Update ECS Service') {
             steps {
                 script {
-                    sh "aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE} --force-new-deployment"
+                    // Get the latest task definition revision
+                    def latestTaskDef = sh(script: "aws ecs describe-task-definition --region us-east-1 --task-definition ${TASK_FAMILY} --query 'taskDefinition.{family:family,revision:revision}' --output json", returnStdout: true).trim()
+                    def taskDefInfo = readJSON text: latestTaskDef
+                    
+                    // Update service to use the latest task definition
+                    sh "aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE} --task-definition ${TASK_FAMILY}:${taskDefInfo.revision} --force-new-deployment"
                 }
             }
         }
