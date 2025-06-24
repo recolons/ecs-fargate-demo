@@ -76,6 +76,11 @@ pipeline {
 
                     // Modify the container image
                     taskDef.taskDefinition.containerDefinitions[0].image = imageUri
+                    
+                    // Update health check timeout
+                    if (taskDef.taskDefinition.containerDefinitions[0].healthCheck) {
+                        taskDef.taskDefinition.containerDefinitions[0].healthCheck.timeout = 15
+                    }
 
                     // Remove unnecessary fields before registering
                     def newTaskDef = taskDef.taskDefinition
