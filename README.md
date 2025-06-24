@@ -88,6 +88,22 @@ curl -X DELETE http://localhost:8080/api/articles/ARTICLE_ID \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
 ```
 
+#### 5. Register Editor
+
+URI: /api/auth/register/editor
+Headers: Content-Type: application/json
+
+Request Body:
+```json
+{
+  "username": "neweditor",
+  "password": "password123",
+  "email": "neweditor@example.com",
+  "firstName": "John",
+  "lastName": "Doe"
+}
+```
+
 ### Security Configuration
 
 - **JWT Secret**: Configured in `application.properties`
