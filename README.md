@@ -90,10 +90,10 @@ curl -X DELETE http://localhost:8080/api/articles/ARTICLE_ID \
 
 #### 5. Register Editor
 
-URI: /api/auth/register/editor
-Headers: Content-Type: application/json
+- **URI**: /api/auth/register/editor
+- **Headers**: Content-Type: application/json
 
-Request Body:
+- **Request Body**:
 ```json
 {
   "username": "neweditor",
