@@ -79,7 +79,7 @@ pipeline {
                     
                     // Update health check timeout
                     if (taskDef.taskDefinition.containerDefinitions[0].healthCheck) {
-                        taskDef.taskDefinition.containerDefinitions[0].healthCheck.timeout = 15
+                        taskDef.taskDefinition.containerDefinitions[0].healthCheck.timeout = 30
                     }
 
                     // Remove unnecessary fields before registering
